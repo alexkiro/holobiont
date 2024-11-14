@@ -31,7 +31,6 @@ jobs:
           title: "hOloBioNt"
           backgroundColor: "#000000"
           toolbarColor: "#ffffff"
-          baseUrl: "/holobiont/"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
