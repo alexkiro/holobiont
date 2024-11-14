@@ -23,9 +23,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Pages
-        id: configure
-        uses: actions/configure-pages@v5
       - name: build-flip-forge
         id: buildDist
         uses: flip-forge/build-flip-forge@b45d5ac3ea811ce3a1403c03c2117cc7f7a2ebb1
@@ -34,7 +31,7 @@ jobs:
           title: "hOloBioNt"
           backgroundColor: "#000000"
           toolbarColor: "#ffffff"
-          baseUrl: ${{ steps.configure.outputs.base_url }}
+          baseUrl: "/holobiont/"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
