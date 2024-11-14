@@ -28,7 +28,7 @@ jobs:
         uses: actions/configure-pages@v5
       - name: build-flip-forge
         id: buildDist
-        uses: flip-forge/build-flip-forge@af3e3623e890e3c60f906e82e4ac0479ade5c8dd
+        uses: flip-forge/build-flip-forge@289985afbd6f3b3b503fb2038d24e87af97f0f0f
         with:
           file: "holobiont.pdf"
           title: "hOloBioNt"
