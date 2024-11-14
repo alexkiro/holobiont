@@ -26,6 +26,9 @@ jobs:
       - name: Setup Pages
         id: configure
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
+          token: '${{ github.token }}'
       - name: build-flip-forge
         id: buildDist
         uses: flip-forge/build-flip-forge@v1.0.1
