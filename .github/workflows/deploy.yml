@@ -1,0 +1,44 @@
+name: Deploy static content to Pages
+
+on:
+  push:
+    branches: [$default-branch]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Pages
+        id: configure
+        uses: actions/configure-pages@v5
+      - name: build-flip-forge
+        id: buildDist
+        uses: flip-forge/build-flip-forge@v1.0.0
+        with:
+          file: "holobiont.pdf"
+          title: "hOloBioNt"
+          backgroundColor: "#000000"
+          toolbarColor: "#ffffff"
+          baseUrl: ${{ steps.configure.outputs.base_url }}
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ steps.buildDist.outputs.dist }}
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
